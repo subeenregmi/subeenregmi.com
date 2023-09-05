@@ -1,6 +1,30 @@
-body{
-	background-color:#FFFBF3;
-	font-family: 'Poppins', sans-serif;
+@font-face {
+	font-family: "Stretch";
+	src: url("fonts/StretchPro.otf")
+		format("opentype");
+	font-weight: normal;
+	font-size: normal;
 }
 
-.header
+body{
+	background-color:#050505;
+	font-family: 'Stretch';
+	font-size: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+div{
+	display: inline-block;
+	border: 1px solid red;
+	flex-basis: content;
+	margin: 10px;
+}
+
+h1 {
+	color: whitesmoke;
+	margin: 10px;
+	transition: transform 300ms ease;
+}
