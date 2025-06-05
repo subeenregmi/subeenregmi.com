@@ -1,14 +1,24 @@
-body {
-    display: grid;
-    grid-template-rows: 1fr 1.5fr 1fr;
-    grid-template-columns: 1fr 1.5fr 1fr;
+.blogs h2 {
+    text-decoration: underline;
 }
 
-.container {
-    grid-row: 2;
-    grid-column: 2;
+.blogs h2, h4 {
+    display: inline;
 }
 
-.container > h1 {
-    text-align: center;
+.blogs h4 {
+    float: right;
+    margin-top: 5px;
+}
+
+.blogs a {
+    color: #f289ff;
+}
+
+.blogs a:hover {
+    color: #e727ff;
+}
+
+.blogs > div {
+    display: block;
 }
