@@ -1,0 +1,22 @@
+.projects a {
+    color: #f289ff;
+}
+
+.projects a:hover {
+    color: #e727ff;
+}
+
+img.icons:hover {
+    filter: invert(0.25);
+}
+
+.project {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+h2.project-title {
+    width: max-content;
+    flex-shrink: 0;
+}

@@ -60,3 +60,9 @@ p.image-caption {
 .container p {
     font-size: 20px;
 }
+
+img.icons {
+    width: 25px;
+    margin: 10px;
+    filter: invert(1);
+}
