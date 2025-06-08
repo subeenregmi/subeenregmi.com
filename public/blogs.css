@@ -1,0 +1,24 @@
+.blogs h2 {
+    text-decoration: underline;
+}
+
+.blogs h2, h4 {
+    display: inline;
+}
+
+.blogs h4 {
+    float: right;
+    margin-top: 5px;
+}
+
+.blogs a {
+    color: #f289ff;
+}
+
+.blogs a:hover {
+    color: #e727ff;
+}
+
+.blogs > div {
+    display: block;
+}
