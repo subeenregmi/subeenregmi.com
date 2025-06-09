@@ -29,5 +29,5 @@ func main () {
 		c.HTML(http.StatusOK, "photos.html", gin.H{})
 	})
 
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 }
