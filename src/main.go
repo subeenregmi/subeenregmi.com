@@ -1,16 +1,19 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
+	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main () {
 	var router *gin.Engine
 	router = gin.Default()
-	
-	//data := []byte("Hello World")
+
 	router.LoadHTMLGlob("../public/*.html")
+	router.LoadHTMLGlob("../public/blogs/*/*.html")
 	router.Static("/static", "../public/static")
 
 	router.GET("/", func (c *gin.Context) {
@@ -21,6 +24,22 @@ func main () {
 		c.HTML(http.StatusOK, "blogs.html", gin.H{})
 	})
 
+	router.GET("/blogs/:blog", func (c *gin.Context) {
+		blog := c.Param("blog")
+		
+		_, err := os.Stat("../public/blogs/"+blog)
+		
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		c.HTML(
+			http.StatusOK,
+			"../public/blogs/" + blog + "/main.html",
+			gin.H{},
+		)
+	})
+
 	router.GET("/projects", func (c *gin.Context) {
 		c.HTML(http.StatusOK, "projects.html", gin.H{})
 	})
@@ -28,6 +47,7 @@ func main () {
 	router.GET("/photos", func (c *gin.Context) {
 		c.HTML(http.StatusOK, "photos.html", gin.H{})
 	})
+
 
 	router.Run("0.0.0.0:8080")
 }
