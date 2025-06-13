@@ -20,6 +20,7 @@ body {
 .container {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
+    padding: 10px;
 }
 
 
@@ -48,8 +49,13 @@ body {
 
 .container > p {
     font-size:18px;
-    padding: 10px;
+    padding: 5px;
+    line-height: 24px;
     text-align: justify
+}
+
+.container > p > sup {
+    line-height: 0;
 }
 
 .container > p > a {
@@ -79,3 +85,5 @@ body {
     width: fit-content;
     margin: auto;
 }
+
+.
