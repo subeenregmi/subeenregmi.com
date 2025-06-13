@@ -1,4 +1,4 @@
-package webrouter
+package api
 
 import (
 	"os"

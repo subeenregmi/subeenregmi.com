@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/subeenregmi/subeenregmi.com/webrouter"
+	"github.com/subeenregmi/subeenregmi.com/api"
 )
 
 func main () {
@@ -13,11 +13,11 @@ func main () {
 
 	router.Static("/static", "../public/static")
 
-	router.GET("/", webrouter.RootHandler)	
-	router.GET("/blogs", webrouter.BlogsHandler)
-	router.GET("/blogs/:blog", webrouter.BlogsHandler)
-	router.GET("/projects", webrouter.ProjectsHandler)
-	router.GET("/photos", webrouter.PhotosHandler)
+	router.GET("/", api.RootHandler)	
+	router.GET("/blogs", api.BlogsHandler)
+	router.GET("/blogs/:blog", api.BlogsHandler)
+	router.GET("/projects", api.ProjectsHandler)
+	router.GET("/photos", api.PhotosHandler)
 
 	router.Run("0.0.0.0:8080")
 }
