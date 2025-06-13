@@ -1,4 +1,4 @@
-module subeenregmi.com/api
+module github.com/subeenregmi/subeenregmi.com
 
 go 1.23.3
 
