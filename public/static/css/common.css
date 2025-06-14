@@ -59,6 +59,27 @@ p.image-caption {
 
 .container p {
     font-size: 20px;
+    margin-left: 16px;
+}
+
+.container h2 {
+    margin: 8px;
+    margin-bottom: 12px;
+}
+
+.container ul, ol {
+    margin: 8px;
+}
+
+
+.container h3 {
+    color: ghostwhite ;
+    margin: 8px;
+}
+
+.container li {
+    font-size: 20px;
+    margin-left: 36px;
 }
 
 img.icons {
@@ -66,3 +87,4 @@ img.icons {
     margin: 10px;
     filter: invert(1);
 }
+
