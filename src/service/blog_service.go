@@ -2,9 +2,11 @@ package blog_service
 
 import (
 	"fmt"
+	"io/fs"
 	"log"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/gomarkdown/markdown"
 )
@@ -45,8 +47,6 @@ func GetBlogMD(root *os.Root, blog string) string {
 		contentBuilder.Write(buffer[0:rb])
 	}
 
-	log.Println(contentBuilder.String())
-
 	return contentBuilder.String()
 }
 
@@ -64,4 +64,43 @@ func GetBlog(blog string) string {
 	html := markdown.ToHTML([]byte(md), nil, nil)
 
 	return string(html)
+}
+
+func ListAllBlogs(root *os.Root) []os.DirEntry {
+	rfs, ok := root.FS().(fs.ReadDirFS)
+	
+	if !ok {
+		log.Fatal(fmt.Sprintf("Cannot read the blog root directory..."))
+	}
+
+	dirs, err := rfs.ReadDir(".")
+	if err != nil {
+		log.Fatal(fmt.Sprintf("Cannot read the dirs in blog root: %e", err))
+	}
+	
+	return dirs
+}
+
+func GetBlogTime(dir os.DirEntry) (time.Time, error) {
+	dinfo, err := dir.Info()
+	
+	if err != nil {
+		return time.Time{}, err
+	}
+
+	return dinfo.ModTime(), nil
+}
+
+func GetBlogs() map[string] string {
+	root := GetBlogRoot()
+	blogs := ListAllBlogs(root)
+	
+	blogtime := make(map[string]string)
+
+	for _, v := range blogs {
+		time, _:= GetBlogTime(v)
+		blogtime[v.Name()] = time.Format("2006-01-02")
+	}
+
+	return blogtime
 }
