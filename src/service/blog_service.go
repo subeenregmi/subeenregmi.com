@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	//"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown"
 )
 
 func GetBlogRoot() *os.Root {
@@ -42,8 +42,26 @@ func GetBlogMD(root *os.Root, blog string) string {
 		if err != nil || rb == 0 {
 			break
 		}
-		contentBuilder.Write(buffer)
+		contentBuilder.Write(buffer[0:rb])
 	}
 
+	log.Println(contentBuilder.String())
+
 	return contentBuilder.String()
+}
+
+func GetBlog(blog string) string {
+	root := GetBlogRoot()
+	if !BlogExists(root, blog) {
+		return "Blog not found"
+	}
+
+	md := GetBlogMD(root, blog)
+	if md == "" {
+		return "Blog MD file not found"
+	}
+
+	html := markdown.ToHTML([]byte(md), nil, nil)
+
+	return string(html)
 }
