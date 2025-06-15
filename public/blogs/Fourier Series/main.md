@@ -69,3 +69,5 @@ Here, only odd harmonics (odd multiples of the fundamental frequency) appear, cl
 ## Conclusion
 
 Fourier series elegantly bridges the gap between complex real-world phenomena and simple, analyzable components. Mastering its concepts unlocks powerful analytical techniques used extensively in science, engineering, and technology.
+
+<img src="/static/images/dog.jpg" alt="picture of dog"> 

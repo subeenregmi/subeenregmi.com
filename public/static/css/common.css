@@ -46,10 +46,11 @@ body {
     color: #c0c0c0;
 }
 
-.container > img {
+.container img {
     width: 75%;
     display: block;
-    margin: auto;
+    margin: 8px auto;
+    
 }
 
 p.image-caption {
