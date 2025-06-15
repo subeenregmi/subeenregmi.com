@@ -104,3 +104,23 @@ func GetBlogs() map[string] string {
 
 	return blogtime
 }
+
+func RenderBlogsList(blogs map[string]string) string {
+	var html strings.Builder
+
+	for k, v := range blogs {
+		html.Write([]byte(
+			fmt.Sprintf(
+			`
+				<div>
+					<a href="/blogs/%v">
+						<h2>%v</h2>
+					</a>
+					<h4>%v</h4>
+				</div>
+			`, k, k, v),
+		))
+	}
+
+	return html.String()
+}

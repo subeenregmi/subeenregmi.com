@@ -1,7 +1,6 @@
 package api
 
 import (
-	"log"
 	"html/template"
 	"net/http"
 
@@ -16,14 +15,16 @@ func RootHandler(c *gin.Context) {
 
 func BlogsHandler(c *gin.Context) {
 	blogs := blog_service.GetBlogs()
-	log.Println(blogs)
+	html := blog_service.RenderBlogsList(blogs)
 
-	c.HTML(http.StatusOK, "blogs.html", gin.H{})
+	c.HTML(http.StatusOK, "blogs.html", gin.H{
+		"blogs" : template.HTML(html),
+	})
 }
 
 func BlogHandler(c *gin.Context) {
 	blog := c.Param("blog")
-	
+
 	if blog == "" {
 		NoRouteHandler(c)
 		return
