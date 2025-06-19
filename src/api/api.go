@@ -15,7 +15,7 @@ func RootHandler(c *gin.Context) {
 
 func BlogsHandler(c *gin.Context) {
 	blogs := blog_service.GetBlogs()
-	html := blog_service.RenderBlogsList(blogs)
+	html := blog_service.BlogsListHTML(blogs)
 
 	c.HTML(http.StatusOK, "blogs.html", gin.H{
 		"blogs" : template.HTML(html),
@@ -30,12 +30,19 @@ func BlogHandler(c *gin.Context) {
 		return
 	}
 
-	html := blog_service.GetBlog(blog)
+	blogs := blog_service.GetBlogs()
+	sblog, err := blog_service.SearchBlogs(blog, blogs)
+
+	if err != nil {
+		NoRouteHandler(c)
+		return
+	}
+
 
 	c.HTML(http.StatusOK, "template.html", gin.H{
-		"title": blog,
+		"title": sblog.Title,
 		"back_url": "/blogs",
-		"page_content": template.HTML(html),
+		"page_content": template.HTML(sblog.HTML),
 	})	
 }
 
@@ -72,4 +79,3 @@ func Router() *gin.Engine {
 	
 	return router
 }
-

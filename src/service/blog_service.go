@@ -11,7 +11,14 @@ import (
 	"github.com/gomarkdown/markdown"
 )
 
-func GetBlogRoot() *os.Root {
+type Blog struct {
+	Title			string
+	HTML 			string
+	Creation		int
+	Expiry 			int
+}
+
+func GetRoot() *os.Root {
 	root, err := os.OpenRoot("../public/blogs")
 	if err != nil {
 		log.Fatal(fmt.Sprintf("Blog folder cannot be found: %e", err))
@@ -19,18 +26,33 @@ func GetBlogRoot() *os.Root {
 	return root
 }
 
-func BlogExists(root *os.Root, blog string) bool {
-	dirinfo, err := root.Open(blog)
-	defer dirinfo.Close()
+func FindBlogs(root *os.Root) []os.DirEntry {
+	rfs, ok := root.FS().(fs.ReadDirFS)
+	
+	if !ok {
+		log.Fatal(fmt.Sprintf("Cannot read the blog root directory..."))
+	}
 
-	return err == nil
+	dirs, err := rfs.ReadDir(".")
+	if err != nil {
+		log.Fatal(fmt.Sprintf("Cannot read the dirs in blog root: %e", err))
+	}
+
+	log.Println(dirs)
+	
+	return dirs
 }
 
-func GetBlogMD(root *os.Root, blog string) string {
-	file, err := root.Open(blog + "/main.md")
+func RenderMD(root *os.Root, blog *Blog) error {
+	file, err := root.Open(blog.Title + "/main.md")
+
+	if blog.Title == "" {
+		return fmt.Errorf("Blog title not set...")
+	}
+
 	if err != nil {
-		log.Printf("MD for %v has not been found: %e", blog, err)
-		return ""
+		log.Printf("MD for %v has not been found: %e", blog.Title, err)
+		return err
 	}
 
 	buffer := make([]byte, 100)
@@ -47,68 +69,59 @@ func GetBlogMD(root *os.Root, blog string) string {
 		contentBuilder.Write(buffer[0:rb])
 	}
 
-	return contentBuilder.String()
+	md := contentBuilder.String()
+	blog.HTML = string(markdown.ToHTML([]byte(md), nil, nil))
+
+	return nil
 }
 
-func GetBlog(blog string) string {
-	root := GetBlogRoot()
-	if !BlogExists(root, blog) {
-		return "Blog not found"
-	}
+func (blog *Blog) Retrieve() error {
+	root := GetRoot()
+	err := RenderMD(root, blog)
 
-	md := GetBlogMD(root, blog)
-	if md == "" {
-		return "Blog MD file not found"
-	}
-
-	html := markdown.ToHTML([]byte(md), nil, nil)
-
-	return string(html)
-}
-
-func ListAllBlogs(root *os.Root) []os.DirEntry {
-	rfs, ok := root.FS().(fs.ReadDirFS)
-	
-	if !ok {
-		log.Fatal(fmt.Sprintf("Cannot read the blog root directory..."))
-	}
-
-	dirs, err := rfs.ReadDir(".")
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Cannot read the dirs in blog root: %e", err))
-	}
-	
-	return dirs
-}
-
-func GetBlogTime(dir os.DirEntry) (time.Time, error) {
-	dinfo, err := dir.Info()
-	
-	if err != nil {
-		return time.Time{}, err
+		return err
 	}
 
-	return dinfo.ModTime(), nil
+	blog.Creation = int(time.Now().Unix())
+	blog.Expiry = int(time.Now().Add(10 * time.Minute).Unix())
+
+	return nil
 }
 
-func GetBlogs() map[string] string {
-	root := GetBlogRoot()
-	blogs := ListAllBlogs(root)
+func GetBlogs() []Blog {
+	root := GetRoot()
+	allBlogs := FindBlogs(root)
+	log.Println(allBlogs)
 	
-	blogtime := make(map[string]string)
+	blogs := make([]Blog, len(allBlogs))
 
-	for _, v := range blogs {
-		time, _:= GetBlogTime(v)
-		blogtime[v.Name()] = time.Format("2006-01-02")
+	for _, v := range allBlogs {
+		blog := Blog{Title: v.Name()}
+		err := blog.Retrieve()
+
+		if err != nil {
+			log.Printf("%v has no main.md inside folder: %e \n", blog.Title, err)
+			continue
+		}
+
+		blogs = append(blogs, blog)
 	}
 
-	return blogtime
+	return blogs
 }
 
-func RenderBlogsList(blogs map[string]string) string {
+func formatTime(creation int) string {
+	rtime := time.Unix(int64(creation), 0)
+	return rtime.Format("2006-01-02")
+}
+
+func BlogsListHTML(blogs []Blog) string {
 	var html strings.Builder
 
-	for k, v := range blogs {
+	log.Println(len(blogs))
+
+	for _, v := range blogs {
 		html.Write([]byte(
 			fmt.Sprintf(
 			`
@@ -118,9 +131,19 @@ func RenderBlogsList(blogs map[string]string) string {
 					</a>
 					<h4>%v</h4>
 				</div>
-			`, k, k, v),
+			`, v.Title, v.Title, formatTime(v.Creation)),
 		))
 	}
 
 	return html.String()
+}
+
+func SearchBlogs(title string, blogs []Blog) (Blog, error) {
+	for _, v := range blogs {
+		if v.Title == title {
+			return v, nil
+		}
+	}
+
+	return Blog{}, fmt.Errorf("Cannot find %v blog...\n", title)
 }
