@@ -15,6 +15,7 @@ func RootHandler(c *gin.Context) {
 
 func BlogsHandler(c *gin.Context) {
 	blogs := blog_service.GetBlogs()
+	blog_service.SortBlogsTime(blogs)
 	html := blog_service.BlogsListHTML(blogs)
 
 	c.HTML(http.StatusOK, "blogs.html", gin.H{

@@ -5,6 +5,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -38,8 +39,6 @@ func FindBlogs(root *os.Root) []os.DirEntry {
 		log.Fatal(fmt.Sprintf("Cannot read the dirs in blog root: %e", err))
 	}
 
-	log.Println(dirs)
-	
 	return dirs
 }
 
@@ -83,7 +82,6 @@ func (blog *Blog) Retrieve() error {
 		return err
 	}
 
-	blog.Creation = int(time.Now().Unix())
 	blog.Expiry = int(time.Now().Add(10 * time.Minute).Unix())
 
 	return nil
@@ -104,12 +102,24 @@ func GetBlogs() []Blog {
 			continue
 		}
 
+		finfo, err := v.Info()
+		if err != nil {
+			log.Printf("Cannot access file info for this file: %v : %e\n", v.Name(), err)
+			continue
+		}
+		blog.Creation = int(finfo.ModTime().Unix())
+		log.Println(formatTime(blog.Creation))
+
 		blogs = append(blogs, blog)
 	}
 
-
-	log.Println(blogs)
 	return blogs
+}
+
+func SortBlogsTime(blogs []Blog) {
+	sort.SliceStable(blogs, func(i, j int) bool {
+		return blogs[i].Creation > blogs[j].Creation
+	})
 }
 
 func formatTime(creation int) string {
