@@ -92,9 +92,8 @@ func (blog *Blog) Retrieve() error {
 func GetBlogs() []Blog {
 	root := GetRoot()
 	allBlogs := FindBlogs(root)
-	log.Println(allBlogs)
 	
-	blogs := make([]Blog, len(allBlogs))
+	blogs := []Blog{}
 
 	for _, v := range allBlogs {
 		blog := Blog{Title: v.Name()}
@@ -108,6 +107,8 @@ func GetBlogs() []Blog {
 		blogs = append(blogs, blog)
 	}
 
+
+	log.Println(blogs)
 	return blogs
 }
 
@@ -118,8 +119,6 @@ func formatTime(creation int) string {
 
 func BlogsListHTML(blogs []Blog) string {
 	var html strings.Builder
-
-	log.Println(len(blogs))
 
 	for _, v := range blogs {
 		html.Write([]byte(
