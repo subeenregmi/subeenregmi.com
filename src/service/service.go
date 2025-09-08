@@ -1,4 +1,4 @@
-package blog_service
+package service
 
 import (
 	"fmt"
@@ -13,30 +13,30 @@ import (
 )
 
 type Blog struct {
-	Title			string
-	HTML 			string
-	Creation		int
-	Expiry 			int
+	Title    string
+	HTML     string
+	Creation int
+	Expiry   int
 }
 
 func GetRoot() *os.Root {
 	root, err := os.OpenRoot("../public/blogs")
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Blog folder cannot be found: %e", err))
+		log.Fatalf("Blog folder cannot be found: %e", err)
 	}
 	return root
 }
 
 func FindBlogs(root *os.Root) []os.DirEntry {
 	rfs, ok := root.FS().(fs.ReadDirFS)
-	
+
 	if !ok {
-		log.Fatal(fmt.Sprintf("Cannot read the blog root directory..."))
+		log.Fatal("Cannot read the blog root directory...")
 	}
 
 	dirs, err := rfs.ReadDir(".")
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Cannot read the dirs in blog root: %e", err))
+		log.Fatalf("Cannot read the dirs in blog root: %e", err)
 	}
 
 	return dirs
@@ -55,7 +55,7 @@ func RenderMD(root *os.Root, blog *Blog) error {
 	}
 
 	buffer := make([]byte, 100)
-	
+
 	var contentBuilder strings.Builder
 
 	rb := 1
@@ -77,7 +77,6 @@ func RenderMD(root *os.Root, blog *Blog) error {
 func (blog *Blog) Retrieve() error {
 	root := GetRoot()
 	err := RenderMD(root, blog)
-
 	if err != nil {
 		return err
 	}
@@ -90,13 +89,12 @@ func (blog *Blog) Retrieve() error {
 func GetBlogs() []Blog {
 	root := GetRoot()
 	allBlogs := FindBlogs(root)
-	
+
 	blogs := []Blog{}
 
 	for _, v := range allBlogs {
 		blog := Blog{Title: v.Name()}
 		err := blog.Retrieve()
-
 		if err != nil {
 			log.Printf("%v has no main.md inside folder: %e \n", blog.Title, err)
 			continue
@@ -133,7 +131,7 @@ func BlogsListHTML(blogs []Blog) string {
 	for _, v := range blogs {
 		html.Write([]byte(
 			fmt.Sprintf(
-			`
+				`
 				<div>
 					<a href="/blogs/%v">
 						<h2>%v</h2>

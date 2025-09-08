@@ -4,9 +4,9 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/subeenregmi/subeenregmi.com/service"
-
 	"github.com/gin-gonic/gin"
+
+	"github.com/subeenregmi/subeenregmi.com/src/service"
 )
 
 func RootHandler(c *gin.Context) {
@@ -14,12 +14,12 @@ func RootHandler(c *gin.Context) {
 }
 
 func BlogsHandler(c *gin.Context) {
-	blogs := blog_service.GetBlogs()
-	blog_service.SortBlogsTime(blogs)
-	html := blog_service.BlogsListHTML(blogs)
+	blogs := service.GetBlogs()
+	service.SortBlogsTime(blogs)
+	html := service.BlogsListHTML(blogs)
 
 	c.HTML(http.StatusOK, "blogs.html", gin.H{
-		"blogs" : template.HTML(html),
+		"blogs": template.HTML(html),
 	})
 }
 
@@ -31,24 +31,22 @@ func BlogHandler(c *gin.Context) {
 		return
 	}
 
-	blogs := blog_service.GetBlogs()
-	sblog, err := blog_service.SearchBlogs(blog, blogs)
-
+	blogs := service.GetBlogs()
+	sblog, err := service.SearchBlogs(blog, blogs)
 	if err != nil {
 		NoRouteHandler(c)
 		return
 	}
 
-
 	c.HTML(http.StatusOK, "template.html", gin.H{
-		"title": sblog.Title,
-		"back_url": "/blogs",
+		"title":        sblog.Title,
+		"back_url":     "/blogs",
 		"page_content": template.HTML(sblog.HTML),
-	})	
+	})
 }
 
 func ProjectsHandler(c *gin.Context) {
-	c.HTML(http.StatusOK, "projects.html",gin.H{})
+	c.HTML(http.StatusOK, "projects.html", gin.H{})
 }
 
 func PhotosHandler(c *gin.Context) {
@@ -57,8 +55,8 @@ func PhotosHandler(c *gin.Context) {
 
 func NoRouteHandler(c *gin.Context) {
 	c.HTML(http.StatusNotFound, "template.html", gin.H{
-		"title": "Page Missing",
-		"back_url": "/",
+		"title":        "Page Missing",
+		"back_url":     "/",
 		"page_content": "The page you are trying to access is missing. :(",
 	})
 }
@@ -77,6 +75,6 @@ func Router() *gin.Engine {
 	router.GET("/photos", PhotosHandler)
 
 	router.NoRoute(NoRouteHandler)
-	
+
 	return router
 }
