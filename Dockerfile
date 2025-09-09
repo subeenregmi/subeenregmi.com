@@ -1,13 +1,16 @@
 FROM golang:1.24
 
-WORKDIR /subeenregmi.com
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
-WORKDIR src
+WORKDIR /app/src
 
+COPY ./src/go.mod ./src/go.sum /app/src/
+
+RUN go install github.com/air-verse/air@v1.62.0
 RUN go mod download
-RUN go build -v -o /usr/local/bin/app .
 
 EXPOSE 8080
-CMD ["app"]
+
+CMD ["air", "-c", ".air.toml"]
