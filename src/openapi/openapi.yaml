@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info: 
+  title: subeenregmi.com
+  description: openapi specification for subeen's personal website
+  version: 0.0.1
+
+paths:
+  "/":
+    get:
+      summary: Index page
+      operationId: getIndexPage
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+
+  "/static/{file}":
+    get:
+      summary: Get files from static folder
+      operationId: getStaticFile
+      parameters: 
+        - name: file
+          description: File name for specific file looked up
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            img/png:
+              schema:
+                type: string
+                format: binary
+            img/jpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: File not found
+
+  "/blogs":
+    get:
+      summary: Get list of blogs
+      operationId: getBlogList
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+
+  "/blogs/{blog}":
+    get:
+      summary: Get a single blog 
+      operationId: getBlog 
+      parameters:
+        - name: blog 
+          description: Name of blog looked up blog
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Blog not found
+    
+  "/projects":
+    get:
+      summary: Projects page
+      operationId: getProjectPage
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+    
+  "/photos":
+    get:
+      summary: Photos page
+      operationId: getPhotosPage
+      responses:
+        '200':
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+
