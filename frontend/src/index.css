@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-sblack: hsl(0, 0%, 10%);
+    --color-swhite-100: hsl(0, 0%, 95%);
+    --color-swhite-75: hsl(0, 0%, 80%);
+    --color-swhite-50: hsl(0, 0%, 45%);
+    --color-swhite-25: hsl(0, 0%, 35%);
+}
+
+:root {
+    font-family: "Neuton", serif;
+    font-weight: 200;
+    font-style: normal;
+    background-color: var(--color-sblack);
+    color: var(--color-swhite-100);
+}
