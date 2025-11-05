@@ -1,13 +1,12 @@
-import "./App.css";
-import Links from "./components/Links";
-import Stickman from "./assets/stickman.png";
+import Links from "@/components/links";
+import StickmanUrl from "@/assets/stickman.png";
 
-export default function App() {
+export default function Home() {
   return (
     <div className="h-[92.5vh] w-screen flex items-center justify-center">
       <img
         className="h-[100px] invert mr-7"
-        src={Stickman}
+        src={StickmanUrl}
         alt="stickman figure"
       />
       <div className="text-center">
