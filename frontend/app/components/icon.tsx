@@ -21,10 +21,7 @@ export default function Icon({ type, className }: IconProps) {
 
     case IconType.Github:
       return (
-        <FiGithub
-          className={cn("inline", "text-2xl", className)}
-          stroke="currentColor"
-        />
+        <FiGithub className={cn("inline", className)} stroke="currentColor" />
       );
 
     default:

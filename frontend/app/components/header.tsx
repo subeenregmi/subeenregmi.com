@@ -5,9 +5,7 @@ export default function Header() {
   return (
     <>
       <header className="flex justify-between items-center text-2xl m-2">
-        <a>
-          <Icon type={IconType.Stickman} />
-        </a>
+        <Links links={[[<Icon type={IconType.Stickman} />, "/"]]} />
         <div className="flex items-end gap-5 mr-5 underline underline-offset-[2.5px]">
           <Links
             links={[

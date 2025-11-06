@@ -1,5 +1,6 @@
 import Links from "@/components/links";
 import StickmanUrl from "@/assets/stickman.png";
+import Icon, { IconType } from "./components/icon";
 
 export default function Home() {
   return (
@@ -21,6 +22,10 @@ export default function Home() {
               ["whoami", "/whoami"],
               ["blogs", "/blogs"],
               ["projects", "/projects"],
+              [
+                <Icon type={IconType.Github} />,
+                "https://github.com/subeenregmi",
+              ],
             ]}
           />
         </div>
