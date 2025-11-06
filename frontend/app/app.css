@@ -6,6 +6,7 @@
     --color-swhite-75: hsl(0, 0%, 80%);
     --color-swhite-50: hsl(0, 0%, 45%);
     --color-swhite-25: hsl(0, 0%, 35%);
+    --font-blocks: "Inter", serif;
 }
 
 :root {

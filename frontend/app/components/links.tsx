@@ -5,7 +5,7 @@ export interface LinksProps {
   className?: string;
 }
 
-export default function Links({ links, className, ...props }: LinksProps) {
+export default function Links({ links, className }: LinksProps) {
   return links?.map(([display, url, external], i) => {
     return (
       <a
