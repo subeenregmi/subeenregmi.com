@@ -5,17 +5,17 @@ export default function Header() {
   return (
     <>
       <header className="flex justify-between items-center text-2xl m-2">
-        <Links links={[[<Icon variant="stickman" />, "/"]]} />
+        <Links links={[{ content: <Icon variant="stickman" />, url: "/" }]} />
         <div className="flex items-end gap-5 mr-5 underline underline-offset-[2.5px]">
           <Links
             links={[
-              ["blogs", "/blogs"],
-              ["projects", "/projects"],
-              [
-                <Icon variant="github" />,
-                "https://github.com/subeenregmi",
-                true,
-              ],
+              { content: "blogs", url: "/blogs" },
+              { content: "projects", url: "/projects" },
+              {
+                content: <Icon variant="github" />,
+                url: "https://github.com/subeenregmi",
+                external: true,
+              },
             ]}
           />
         </div>

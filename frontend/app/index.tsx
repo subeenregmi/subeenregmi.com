@@ -19,10 +19,14 @@ export default function Home() {
           <Links
             className="text-[20px] m-[5px]"
             links={[
-              ["whoami", "/whoami"],
-              ["blogs", "/blogs"],
-              ["projects", "/projects"],
-              [<Icon variant="github" />, "https://github.com/subeenregmi"],
+              { content: "whoami", url: "/whoami" },
+              { content: "blogs", url: "/blogs" },
+              { content: "projects", url: "/projects" },
+              {
+                content: <Icon variant="github" />,
+                url: "https://github.com/subeenregmi",
+                external: true,
+              },
             ]}
           />
         </div>

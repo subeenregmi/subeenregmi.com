@@ -1,12 +1,18 @@
 import { cn } from "@/utils";
 
+export interface Link {
+  content: any;
+  url: string;
+  external?: boolean;
+}
+
 export interface LinksProps {
-  links?: [any, string, boolean?][];
+  links?: Link[];
   className?: string;
 }
 
 export default function Links({ links, className }: LinksProps) {
-  return links?.map(([display, url, external], i) => {
+  return links?.map(({ content, url, external }, i) => {
     return (
       <a
         key={i}
@@ -24,7 +30,7 @@ export default function Links({ links, className }: LinksProps) {
         href={url}
         target={external ? "_blank" : "_self"}
       >
-        {display}
+        {content}
       </a>
     );
   });

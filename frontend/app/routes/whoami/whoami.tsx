@@ -16,7 +16,7 @@ export default function WhoAmI() {
           </span>
           and i am
         </p>
-        <div className="w-fit mx-auto my-5">
+        <div className="w-[30vw] mx-auto my-5">
           <p>
             <Icon variant="locationPin" className="mr-2" />a{" "}
             <span className="font-bold text-[#e78284]">software engineer</span>{" "}
@@ -33,7 +33,15 @@ export default function WhoAmI() {
               part-time software engineer
             </span>{" "}
             at{" "}
-            <Links links={[["sparklayer b2b", "https://www.sparklayer.io/"]]} />
+            <Links
+              links={[
+                {
+                  content: "sparklayer b2b",
+                  url: "https://www.sparklayer.io/",
+                  external: true,
+                },
+              ]}
+            />
           </p>
           <p>
             <Icon variant="laptop" className="mr-2" />a previous{" "}
@@ -41,8 +49,15 @@ export default function WhoAmI() {
               software engineering intern
             </span>{" "}
             at{" "}
-            <Links links={[["sparklayer b2b", "https://www.sparklayer.io/"]]} />{" "}
-            (july - oct. 2025)
+            <Links
+              links={[
+                {
+                  content: "sparklayer b2b",
+                  url: "https://www.sparklayer.io/",
+                  external: true,
+                },
+              ]}
+            />{" "}
           </p>
         </div>
         <p className="text-center text-3xl">
@@ -73,6 +88,40 @@ export default function WhoAmI() {
           <Banner text="DOCKER" icon="docker" />
           <Banner text="REDIS" icon="redis" />
           <Banner text="PULUMI" icon="pulumi" />
+        </div>
+        <p className="text-center text-3xl">
+          you can
+          <span className="inline text-5xl font-bold text-center p-2">
+            find me
+          </span>
+          on any of these platforms
+        </p>
+        <div className="flex justify-center gap-10 my-10">
+          <Links
+            className="text-4xl"
+            links={[
+              {
+                content: <Icon variant="youtube" />,
+                url: "https://www.youtube.com/channel/UCLlTDBQpUxOMOEuCNDWVMOQ",
+                external: true,
+              },
+              {
+                content: <Icon variant="twitter" />,
+                url: "https://x.com/subeenregmi",
+                external: true,
+              },
+              {
+                content: <Icon variant="linkedin" />,
+                url: "https://www.linkedin.com/in/subeenregmi",
+                external: true,
+              },
+              {
+                content: <Icon variant="github" />,
+                url: "https://github.com/subeenregmi",
+                external: true,
+              },
+            ]}
+          />
         </div>
       </TextBlock>
     </div>
