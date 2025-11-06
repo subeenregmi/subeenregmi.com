@@ -14,7 +14,16 @@ export default function Home() {
         <p className="inline-block text-[28px] -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-75">
           software engineer
         </p>
-        <Links links={["whoami", "blogs", "projects"]} />
+        <div className="flex justify-evenly">
+          <Links
+            className="text-[20px] m-[5px]"
+            links={[
+              ["whoami", "/whoami"],
+              ["blogs", "/blogs"],
+              ["projects", "/projects"],
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
