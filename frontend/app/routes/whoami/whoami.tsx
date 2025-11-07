@@ -10,13 +10,13 @@ export default function WhoAmI() {
       <Header />
       <TextBlock>
         <p className="text-center text-3xl">
-          hello i am
-          <span className="text-5xl font-bold text-center inline p-2">
+          hello! my name is{" "}
+          <span className="text-5xl font-bold text-center inline">
             subeen regmi
           </span>
-          and i am
+          , i am
         </p>
-        <div className="w-[30vw] mx-auto my-5">
+        <div className="w-[31vw] mx-auto my-5">
           <p>
             <Icon variant="locationPin" className="mr-2" />a{" "}
             <span className="font-bold text-[#e78284]">software engineer</span>{" "}
@@ -39,6 +39,7 @@ export default function WhoAmI() {
                   content: "sparklayer b2b",
                   url: "https://www.sparklayer.io/",
                   external: true,
+                  externalIcon: true,
                 },
               ]}
             />
@@ -55,14 +56,15 @@ export default function WhoAmI() {
                   content: "sparklayer b2b",
                   url: "https://www.sparklayer.io/",
                   external: true,
+                  externalIcon: true,
                 },
               ]}
             />{" "}
           </p>
         </div>
         <p className="text-center text-3xl">
-          i have worked with the following
-          <span className="text-5xl font-bold text-center inline p-2">
+          i have worked with the following{" "}
+          <span className="text-5xl font-bold text-center inline">
             technologies
           </span>
         </p>
@@ -90,10 +92,8 @@ export default function WhoAmI() {
           <Banner text="PULUMI" icon="pulumi" />
         </div>
         <p className="text-center text-3xl">
-          you can
-          <span className="inline text-5xl font-bold text-center p-2">
-            find me
-          </span>
+          you can{" "}
+          <span className="inline text-5xl font-bold text-center">find me</span>{" "}
           on any of these platforms
         </p>
         <div className="flex justify-center gap-10 my-10">
@@ -123,6 +123,20 @@ export default function WhoAmI() {
             ]}
           />
         </div>
+        <p className="text-center text-3xl">
+          here is my
+          <span className="inline text-5xl font-bold text-center p-2">
+            <Links
+              links={[
+                {
+                  content: "resumé",
+                  url: "/resume.pdf",
+                  external: true,
+                },
+              ]}
+            />
+          </span>
+        </p>
       </TextBlock>
     </div>
   );

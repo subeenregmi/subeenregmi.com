@@ -1,9 +1,11 @@
 import { cn } from "@/utils";
+import Icon from "./icon";
 
 export interface Link {
   content: any;
   url: string;
   external?: boolean;
+  externalIcon?: boolean;
 }
 
 export interface LinksProps {
@@ -12,7 +14,7 @@ export interface LinksProps {
 }
 
 export default function Links({ links, className }: LinksProps) {
-  return links?.map(({ content, url, external }, i) => {
+  return links?.map(({ content, url, external, externalIcon }, i) => {
     return (
       <a
         key={i}
@@ -31,6 +33,9 @@ export default function Links({ links, className }: LinksProps) {
         target={external ? "_blank" : "_self"}
       >
         {content}
+        {externalIcon && (
+          <Icon className="text-sm ml-1" variant="externalLink" />
+        )}
       </a>
     );
   });

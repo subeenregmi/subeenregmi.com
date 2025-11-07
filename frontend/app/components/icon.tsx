@@ -11,22 +11,17 @@ import {
 } from "react-icons/bi";
 import { DiGoogleCloudPlatform } from "react-icons/di";
 import { FaDocker, FaGitAlt, FaYoutube } from "react-icons/fa";
-import {
-  FaGolang,
-  FaLinkedinIn,
-  FaReact,
-  FaTwitter,
-  FaXTwitter,
-} from "react-icons/fa6";
+import { FaGolang, FaLinkedinIn, FaReact, FaXTwitter } from "react-icons/fa6";
 import { FiGithub, FiMapPin } from "react-icons/fi";
 import { GrMysql } from "react-icons/gr";
+import { HiOutlineExternalLink } from "react-icons/hi";
 import {
   IoSchoolOutline,
   IoLaptopOutline,
   IoCodeSlash,
   IoLogoPython,
 } from "react-icons/io5";
-import { LuBinary, LuLinkedin } from "react-icons/lu";
+import { LuBinary } from "react-icons/lu";
 import { SiGnubash, SiLua, SiPulumi, SiRedis } from "react-icons/si";
 import { TbHexagonLetterCFilled } from "react-icons/tb";
 
@@ -59,6 +54,7 @@ const IconVariantMap = {
   youtube: FaYoutube,
   twitter: FaXTwitter,
   linkedin: FaLinkedinIn,
+  externalLink: HiOutlineExternalLink,
   stickman: true,
 };
 
