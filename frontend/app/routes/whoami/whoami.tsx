@@ -124,7 +124,7 @@ export default function WhoAmI() {
           />
         </div>
         <p className="text-center text-3xl">
-          here is my
+          and here is my
           <span className="inline text-5xl font-bold text-center p-2">
             <Links
               links={[
