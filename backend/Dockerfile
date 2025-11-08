@@ -1,12 +1,10 @@
 FROM golang:1.24
 
-WORKDIR /app
+WORKDIR /app/backend
 
-COPY . /app
+COPY . .
 
-WORKDIR /app/src
-
-COPY ./src/go.mod ./src/go.sum /app/src/
+COPY ./go.mod ./go.sum /app/backend/
 
 RUN go install github.com/air-verse/air@v1.62.0
 RUN go mod download

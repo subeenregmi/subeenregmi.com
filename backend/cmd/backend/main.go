@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/subeenregmi/subeenregmi.com/internal/api"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	api.Run()
 }
