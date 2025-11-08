@@ -17,12 +17,7 @@
           docker
           go
           nodejs_24
-          zsh
         ];
-
-        shellHook = ''
-          zsh
-        '';
       };
     };
 }
