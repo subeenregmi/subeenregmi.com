@@ -1,8 +1,8 @@
 FROM node:24-alpine
 
-WORKDIR /app/frontend
+WORKDIR /website
 
-COPY package-lock.json package.json /app/frontend/
+COPY package-lock.json package.json /website/
 
 RUN npm install
 

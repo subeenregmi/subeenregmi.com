@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from "react";
 
 export interface TextBlockProps {
-  className?: string;
+	className?: string;
 }
 
 export default function TextBlock({
-  children,
+	children,
 }: PropsWithChildren<TextBlockProps>) {
-  return <div className="m-10 mx-[25vw] text-2xl ">{children}</div>;
+	return <div className="m-10 mt-0 mx-[25vw] text-2xl ">{children}</div>;
 }
