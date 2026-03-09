@@ -10,3 +10,8 @@ up-attached:
 down:
 	@docker compose down
 
+deploy:
+	@docker compose -f compose.prod.yaml up -d --build
+
+deploy-down:
+	@docker compose -f compose.prod.yaml down

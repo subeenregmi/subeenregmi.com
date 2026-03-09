@@ -1,9 +1,9 @@
 import {
-	useRef,
-	useEffect,
-	useCallback,
-	type ReactNode,
 	type MouseEvent,
+	type ReactNode,
+	useCallback,
+	useEffect,
+	useRef,
 } from "react";
 
 interface SpotlightContainerProps {
@@ -42,7 +42,7 @@ export default function SpotlightContainer({
 
 			if (mousePosRef.current) {
 				const rect = item.getBoundingClientRect();
-				const containerRect = containerRef.current!.getBoundingClientRect();
+				const containerRect = containerRef.current?.getBoundingClientRect();
 
 				// Get center of the item relative to container
 				const itemCenterX = rect.left - containerRect.left + rect.width / 2;
@@ -50,8 +50,8 @@ export default function SpotlightContainer({
 
 				// Calculate distance from mouse to item center
 				const distance = Math.sqrt(
-					Math.pow(mousePosRef.current.x - itemCenterX, 2) +
-						Math.pow(mousePosRef.current.y - itemCenterY, 2),
+					(mousePosRef.current.x - itemCenterX) ** 2 +
+						(mousePosRef.current.y - itemCenterY) ** 2,
 				);
 
 				// Calculate target intensity (1 = fully lit, 0 = default dim)
@@ -87,7 +87,7 @@ export default function SpotlightContainer({
 		} else {
 			animationRef.current = null;
 		}
-	}, [radius, smoothing]);
+	}, [radius, smoothing, lerp]);
 
 	// Start animation loop when needed
 	const startAnimation = useCallback(() => {
