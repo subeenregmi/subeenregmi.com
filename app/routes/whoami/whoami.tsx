@@ -2,6 +2,7 @@ import Banner from "@/components/banner";
 import Header from "@/components/header";
 import Icon from "@/components/icon";
 import Links from "@/components/links";
+import SpotlightContainer from "@/components/spotlight";
 import TextBlock from "@/components/textblock";
 
 export default function WhoAmI() {
@@ -68,7 +69,10 @@ export default function WhoAmI() {
 						technologies
 					</span>
 				</p>
-				<div className="my-10 w-[27vw] mx-auto flex gap-2 flex-wrap justify-start">
+				<SpotlightContainer
+					radius={200}
+					className="my-10 w-[27vw] mx-auto flex gap-2 flex-wrap justify-start"
+				>
 					<Banner text="GO" icon="go" />
 					<Banner text="PYTHON" icon="python" />
 					<Banner text="C" icon="c" />
@@ -97,7 +101,7 @@ export default function WhoAmI() {
 					<Banner text="GIT" icon="git" />
 					<Banner text="DOCKER" icon="docker" />
 					<Banner text="PULUMI" icon="pulumi" />
-				</div>
+				</SpotlightContainer>
 				<p className="text-center text-3xl">
 					you can{" "}
 					<span className="inline text-5xl font-bold text-center">find me</span>{" "}
