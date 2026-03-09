@@ -3,5 +3,6 @@ services:
     build:
       context: .
     ports:
-      - "3000:3000"
+      - "8383:3000"
     command: ["npm", "run", "start"]
+    restart: always

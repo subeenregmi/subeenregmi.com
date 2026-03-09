@@ -7,7 +7,7 @@ import TextBlock from "@/components/textblock";
 
 export default function WhoAmI() {
 	return (
-		<div className="h-screen overflow-hidden">
+		<div>
 			<Header />
 			<TextBlock>
 				<p className="text-center text-3xl mb-5">
