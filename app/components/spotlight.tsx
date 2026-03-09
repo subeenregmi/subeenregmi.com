@@ -1,10 +1,4 @@
-import {
-	type MouseEvent,
-	type ReactNode,
-	useCallback,
-	useEffect,
-	useRef,
-} from "react";
+import { type ReactNode, useCallback, useEffect, useRef } from "react";
 
 interface SpotlightContainerProps {
 	children: ReactNode;
@@ -43,6 +37,7 @@ export default function SpotlightContainer({
 			if (mousePosRef.current) {
 				const rect = item.getBoundingClientRect();
 				const containerRect = containerRef.current?.getBoundingClientRect();
+				if (!containerRect) return;
 
 				// Get center of the item relative to container
 				const itemCenterX = rect.left - containerRect.left + rect.width / 2;
@@ -87,7 +82,7 @@ export default function SpotlightContainer({
 		} else {
 			animationRef.current = null;
 		}
-	}, [radius, smoothing, lerp]);
+	}, [radius, smoothing]);
 
 	// Start animation loop when needed
 	const startAnimation = useCallback(() => {
@@ -96,20 +91,37 @@ export default function SpotlightContainer({
 		}
 	}, [animate]);
 
-	const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-		if (!containerRef.current) return;
-		const rect = containerRef.current.getBoundingClientRect();
-		mousePosRef.current = {
-			x: e.clientX - rect.left,
-			y: e.clientY - rect.top,
-		};
-		startAnimation();
-	};
+	// Document-level mouse tracking for extended detection area
+	useEffect(() => {
+		const handleDocumentMouseMove = (e: MouseEvent) => {
+			if (!containerRef.current) return;
 
-	const handleMouseLeave = () => {
-		mousePosRef.current = null;
-		startAnimation(); // Continue animating to smoothly fade out
-	};
+			const rect = containerRef.current.getBoundingClientRect();
+
+			// Check if mouse is within extended bounds (container + radius)
+			const isWithinBounds =
+				e.clientX >= rect.left - radius &&
+				e.clientX <= rect.right + radius &&
+				e.clientY >= rect.top - radius &&
+				e.clientY <= rect.bottom + radius;
+
+			if (isWithinBounds) {
+				mousePosRef.current = {
+					x: e.clientX - rect.left,
+					y: e.clientY - rect.top,
+				};
+				startAnimation();
+			} else if (mousePosRef.current !== null) {
+				// Only trigger fade out if we were previously tracking
+				mousePosRef.current = null;
+				startAnimation(); // Fade out
+			}
+		};
+
+		document.addEventListener("mousemove", handleDocumentMouseMove);
+		return () =>
+			document.removeEventListener("mousemove", handleDocumentMouseMove);
+	}, [radius, startAnimation]);
 
 	// Cleanup animation on unmount
 	useEffect(() => {
@@ -121,23 +133,7 @@ export default function SpotlightContainer({
 	}, []);
 
 	return (
-		<div
-			ref={containerRef}
-			className={className}
-			style={{ position: "relative" }}
-		>
-			{/* Invisible extended detection area */}
-			<div
-				style={{
-					position: "absolute",
-					top: `-${radius}px`,
-					left: `-${radius}px`,
-					right: `-${radius}px`,
-					bottom: `-${radius}px`,
-				}}
-				onMouseMove={handleMouseMove}
-				onMouseLeave={handleMouseLeave}
-			/>
+		<div ref={containerRef} className={className}>
 			{children}
 		</div>
 	);
