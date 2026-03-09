@@ -6,7 +6,7 @@ export default function Header() {
 		<header className="flex justify-between items-center text-2xl m-2 mb-0">
 			<Links
 				links={[{ content: <Icon variant="stickman" />, url: "/" }]}
-				className="ml-4"
+				className="ml-2"
 			/>
 			<div className="flex items-end gap-5 mr-5 underline underline-offset-[2.5px]">
 				<Links
