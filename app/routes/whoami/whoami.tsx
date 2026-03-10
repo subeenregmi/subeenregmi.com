@@ -6,29 +6,34 @@ import SpotlightContainer from "@/components/spotlight";
 import TextBlock from "@/components/textblock";
 
 export default function WhoAmI() {
+	const bolded = (text: any) => (
+		<span className="text-3xl md:text-5xl font-bold md:text-center inline">
+			{text}
+		</span>
+	);
 	return (
 		<div>
 			<Header />
-			<TextBlock>
-				<p className="text-center text-3xl mb-5">
-					hello! my name is{" "}
-					<span className="text-5xl font-bold text-center inline">
-						subeen regmi
+			<TextBlock className="flex flex-col justify-center items-center">
+				<p className="mb-2 md:mb-4">
+					hello! my name is {bolded("subeen regmi")}
+					<span className="max-sm:hidden">
+						,
+						<br className="md:hidden" /> i am
 					</span>
-					, i am
 				</p>
-				<div className="w-[31vw] mx-auto my-5">
-					<p>
+				<div className="max-sm:w-[75vw] w-fit max-sm:text-xl md:text-2xl mb-2">
+					<p className="w-fit">
 						<Icon variant="locationPin" className="mr-2" />a{" "}
 						<span className="font-bold text-[#e78284]">software engineer</span>{" "}
 						based in reading, united kingdom
 					</p>
-					<p>
+					<p className="w-fit">
 						<Icon variant="educationHat" className="mr-2" />a{" "}
 						<span className="font-bold text-[#a6d189]">third year student</span>{" "}
 						at the university of bath
 					</p>
-					<p>
+					<p className="w-fit">
 						<Icon variant="code" className="mr-2" />a current{" "}
 						<span className="font-bold text-[#8caaee]">
 							part-time software engineer
@@ -45,7 +50,7 @@ export default function WhoAmI() {
 							]}
 						/>
 					</p>
-					<p>
+					<p className="w-fit">
 						<Icon variant="laptop" className="mr-2" />a previous{" "}
 						<span className="font-bold text-[#ca9ee6]">
 							software engineering intern
@@ -63,15 +68,12 @@ export default function WhoAmI() {
 						/>{" "}
 					</p>
 				</div>
-				<p className="text-center text-3xl">
-					i have worked with the following{" "}
-					<span className="text-5xl font-bold text-center inline">
-						technologies
-					</span>
+				<p className="text-center">
+					i have worked with the following {bolded("technologies")}
 				</p>
 				<SpotlightContainer
 					radius={200}
-					className="my-10 w-[27vw] mx-auto flex gap-2 flex-wrap justify-start"
+					className="md:mt-8 my-4 w-[80vw] md:w-[45vw] lg:w-[27.5vw] mx-auto flex gap-2 flex-wrap justify-center md:justify-start"
 				>
 					<Banner text="GO" icon="go" />
 					<Banner text="PYTHON" icon="python" />
@@ -91,25 +93,23 @@ export default function WhoAmI() {
 					<Banner text="MYSQL" icon="mysql" />
 					<Banner text="MONGO" icon="mongo" />
 
+					<Banner text="GCP" icon="gcp" />
+					<Banner text="GIT" icon="git" />
+					<Banner text="DOCKER" icon="docker" />
+					<Banner text="PULUMI" icon="pulumi" />
+
 					<Banner text="REACT" icon="react" />
 					<Banner text="TAILWIND" icon="tailwind" />
 					<Banner text="FLASK" icon="flask" />
 					<Banner text="VUE" icon="vue" />
 					<Banner text="GIN" icon="go" />
-
-					<Banner text="GCP" icon="gcp" />
-					<Banner text="GIT" icon="git" />
-					<Banner text="DOCKER" icon="docker" />
-					<Banner text="PULUMI" icon="pulumi" />
 				</SpotlightContainer>
-				<p className="text-center text-3xl">
-					you can{" "}
-					<span className="inline text-5xl font-bold text-center">find me</span>{" "}
-					on any of these platforms
+				<p className="text-center">
+					you can {bolded("find me")} on any of these platforms
 				</p>
-				<div className="flex justify-center gap-10 my-10">
+				<div className="flex justify-center gap-5 mt-6 my-4 md:gap-8">
 					<Links
-						className="text-4xl"
+						className="text-3xl md:text-4xl"
 						links={[
 							{
 								content: <Icon variant="youtube" />,
@@ -134,9 +134,9 @@ export default function WhoAmI() {
 						]}
 					/>
 				</div>
-				<p className="-mt-1 text-center text-3xl">
-					here is my
-					<span className="inline text-5xl font-bold text-center p-2">
+				<p className="mb-10 text-center">
+					here is my{" "}
+					{bolded(
 						<Links
 							links={[
 								{
@@ -145,8 +145,8 @@ export default function WhoAmI() {
 									external: true,
 								},
 							]}
-						/>
-					</span>
+						/>,
+					)}
 				</p>
 			</TextBlock>
 		</div>

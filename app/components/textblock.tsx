@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from "react";
+import { cn } from "@/utils";
 
 export interface TextBlockProps {
 	className?: string;
@@ -6,6 +7,13 @@ export interface TextBlockProps {
 
 export default function TextBlock({
 	children,
+	className,
 }: PropsWithChildren<TextBlockProps>) {
-	return <div className="m-10 mt-0 mx-[25vw] text-2xl ">{children}</div>;
+	return (
+		<div
+			className={cn(className, "my-2 mx-5 md:mx-[12.5vw] text-2xl md:text-3xl")}
+		>
+			{children}
+		</div>
+	);
 }
