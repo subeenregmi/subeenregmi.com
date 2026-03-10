@@ -4,7 +4,7 @@ import Icon from "./components/icon";
 
 export default function Home() {
 	return (
-		<div className="h-screen w-screen flex items-center justify-center">
+		<div className="h-dvh w-full flex items-center justify-center">
 			<div className="flex items-center">
 				<img
 					className="h-[100px] md:h-[125px] invert mr-2 md:mr-4"
