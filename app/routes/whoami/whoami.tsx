@@ -134,20 +134,6 @@ export default function WhoAmI() {
 						]}
 					/>
 				</div>
-				<p className="mb-10 text-center">
-					here is my{" "}
-					{bolded(
-						<Links
-							links={[
-								{
-									content: "resumé",
-									url: "/resume.pdf",
-									external: true,
-								},
-							]}
-						/>,
-					)}
-				</p>
 			</TextBlock>
 		</div>
 	);
