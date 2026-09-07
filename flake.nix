@@ -2,7 +2,7 @@
   description = "subeenregmi website";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   };
 
   outputs = { nixpkgs, ... }: 
@@ -16,7 +16,7 @@
         packages = with pkgs; [
           docker
           go
-          nodejs_24
+          nodejs_26
         ];
       };
     };
