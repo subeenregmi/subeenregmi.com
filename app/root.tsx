@@ -28,7 +28,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 		<html lang="en">
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="viewport" content="width=device-width, initial-scale=2" />
+				<script
+					defer
+					src="https://umami.subeenregmi.com/script.js"
+					data-website-id="109b4501-7e4f-4d33-add2-8373df9c1677"
+				></script>
 				<title>subeen regmi</title>
 				<Meta />
 				<Links />
