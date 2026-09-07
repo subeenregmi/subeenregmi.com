@@ -1,10 +1,10 @@
-FROM node:26-alpine
+FROM node:26-slim
 
 WORKDIR /website
 
 COPY package-lock.json package.json /website/
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 

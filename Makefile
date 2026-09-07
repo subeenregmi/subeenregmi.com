@@ -13,7 +13,8 @@ down:
 deploy:
 	git fetch origin main
 	git reset --hard origin/main
-	@docker compose -f compose.prod.yaml up -d --build
+	@docker compose -f compose.prod.yaml build --no-cache --pull
+	@docker compose -f compose.prod.yaml up -d
 
 deploy-down:
 	@docker compose -f compose.prod.yaml down
