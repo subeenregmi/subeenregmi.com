@@ -28,7 +28,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 		<html lang="en">
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=2" />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1, viewport-fit=cover"
+				/>
+				<meta name="color-scheme" content="dark" />
+				<meta name="theme-color" content="#1a1a1a" />
+				<meta
+					name="description"
+					content="subeen regmi — software engineer based in reading, united kingdom."
+				/>
+				<meta name="apple-mobile-web-app-title" content="subeen regmi" />
 				<script
 					defer
 					src="https://umami.subeenregmi.com/script.js"
@@ -38,7 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body className="antialiased">
 				{children}
 				<ScrollRestoration />
 				<Scripts />
@@ -68,14 +78,16 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	}
 
 	return (
-		<main className="pt-16 p-4 container mx-auto">
-			<h1>{message}</h1>
-			<p>{details}</p>
-			{stack && (
-				<pre className="w-full p-4 overflow-x-auto">
-					<code>{stack}</code>
-				</pre>
-			)}
+		<main className="pt-safe pb-safe container mx-auto min-h-dvh">
+			<div className="p-4 pt-16">
+				<h1 className="text-4xl md:text-5xl font-bold">{message}</h1>
+				<p className="mt-2 text-xl md:text-2xl text-swhite-75">{details}</p>
+				{stack && (
+					<pre className="w-full mt-4 p-4 overflow-x-auto text-sm">
+						<code>{stack}</code>
+					</pre>
+				)}
+			</div>
 		</main>
 	);
 }

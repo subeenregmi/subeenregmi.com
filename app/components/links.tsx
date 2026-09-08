@@ -23,10 +23,15 @@ export default function Links({ links, className }: LinksProps) {
 					"text-swhite-25",
 					"underline",
 					"underline-offset-[2.5px]",
-					"transition-colors",
+					"transition",
 					"duration-150",
 					"ease-linear",
 					"hover:text-swhite-75",
+					// Touch devices never hover, so the dim resting colour would be
+					// all they ever see. Give them the lit colour and a tap state.
+					"touch:text-swhite-75",
+					"active:opacity-60",
+					"touch-manipulation",
 					"cursor-pointer",
 					className,
 				)}

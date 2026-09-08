@@ -93,6 +93,11 @@ export default function SpotlightContainer({
 
 	// Document-level mouse tracking for extended detection area
 	useEffect(() => {
+		// Touch devices have no cursor to follow, and tapping makes iOS emit a
+		// synthetic mousemove that would dim every item away from the tap. Leave
+		// the resting intensity from app.css in place instead.
+		if (window.matchMedia("(hover: none)").matches) return;
+
 		const handleDocumentMouseMove = (e: MouseEvent) => {
 			if (!containerRef.current) return;
 
