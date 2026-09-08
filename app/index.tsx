@@ -4,21 +4,23 @@ import Icon from "./components/icon";
 
 export default function Home() {
 	return (
-		<div className="h-dvh w-full flex items-center justify-center">
-			<div className="flex items-center">
+		<div className="min-h-dvh w-full flex items-center justify-center pt-safe pb-safe px-4">
+			<div className="flex items-center gap-2 md:gap-4">
 				<img
-					className="h-[100px] md:h-[125px] invert mr-2 md:mr-4"
+					className="h-24 sm:h-[100px] md:h-[125px] shrink-0 invert"
 					src={StickmanUrl}
 					alt="stickman figure"
 				/>
 				<div className="text-center">
-					<h1 className="text-3xl md:text-5xl font-bold">SUBEEN REGMI</h1>
-					<p className="inline-block text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-75">
+					<h1 className="text-[clamp(1.5rem,8.5vw,1.875rem)] md:text-5xl font-bold">
+						SUBEEN REGMI
+					</h1>
+					<p className="inline-block text-xl sm:text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-75">
 						software engineer
 					</p>
-					<div className="flex justify-evenly">
+					<div className="flex items-center justify-evenly">
 						<Links
-							className="text-xl m-1 md:m-2"
+							className="inline-flex items-center justify-center min-h-11 min-w-11 text-lg sm:text-xl px-2 md:px-3"
 							links={[
 								{ content: "whoami", url: "/whoami" },
 								{

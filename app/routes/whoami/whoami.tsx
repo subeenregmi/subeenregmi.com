@@ -12,7 +12,7 @@ export default function WhoAmI() {
 		</span>
 	);
 	return (
-		<div>
+		<div className="min-h-dvh pb-safe">
 			<Header />
 			<TextBlock className="flex flex-col justify-center items-center">
 				<p className="mb-2 md:mb-4">
@@ -22,7 +22,7 @@ export default function WhoAmI() {
 						<br className="md:hidden" /> i am
 					</span>
 				</p>
-				<div className="max-sm:w-[75vw] w-fit max-sm:text-xl md:text-2xl mb-2">
+				<div className="w-full sm:w-fit text-xl sm:text-2xl mb-2 max-sm:space-y-2">
 					<p className="w-fit">
 						<Icon variant="locationPin" className="mr-2" />a{" "}
 						<span className="font-bold text-[#e78284]">software engineer</span>{" "}
@@ -40,6 +40,7 @@ export default function WhoAmI() {
 						</span>{" "}
 						at{" "}
 						<Links
+							className="whitespace-nowrap"
 							links={[
 								{
 									content: "sparklayer b2b",
@@ -57,6 +58,7 @@ export default function WhoAmI() {
 						</span>{" "}
 						at{" "}
 						<Links
+							className="whitespace-nowrap"
 							links={[
 								{
 									content: "sparklayer b2b",
@@ -73,7 +75,7 @@ export default function WhoAmI() {
 				</p>
 				<SpotlightContainer
 					radius={200}
-					className="md:mt-8 my-4 w-[80vw] md:w-[45vw] lg:w-[27.5vw] mx-auto flex gap-2 flex-wrap justify-center md:justify-start"
+					className="md:mt-8 my-4 w-full md:w-[45vw] lg:w-[27.5vw] max-w-full mx-auto flex gap-2 flex-wrap justify-center md:justify-start"
 				>
 					<Banner text="GO" icon="go" />
 					<Banner text="PYTHON" icon="python" />
@@ -107,9 +109,9 @@ export default function WhoAmI() {
 				<p className="text-center">
 					you can {bolded("find me")} on any of these platforms
 				</p>
-				<div className="flex justify-center gap-5 mt-6 my-4 md:gap-8">
+				<div className="flex justify-center items-center gap-4 mt-6 mb-8 md:gap-6">
 					<Links
-						className="text-3xl md:text-4xl"
+						className="inline-flex items-center justify-center min-h-11 min-w-11 text-3xl md:text-4xl"
 						links={[
 							{
 								content: <Icon variant="youtube" />,

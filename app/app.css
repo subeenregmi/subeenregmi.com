@@ -9,10 +9,59 @@
     --font-blocks: "Inter", serif;
 }
 
+/* Devices without a real hover state (phones/tablets) never receive the
+   hover + spotlight treatments, so they need brighter resting colours. */
+@custom-variant touch (@media (hover: none));
+
+/* Safe area helpers for notched/rounded displays (iPhone X and newer).
+   Paired with viewport-fit=cover in root.tsx. */
+@utility pt-safe {
+    padding-top: env(safe-area-inset-top);
+}
+
+@utility pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
 :root {
     font-family: "Neuton", serif;
     font-weight: 200;
     font-style: normal;
     background-color: var(--color-sblack);
     color: var(--color-swhite-100);
+    color-scheme: dark;
+    /* Stop iOS inflating text when a phone is rotated to landscape. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    /* Keep content clear of the notch when the phone is held in landscape. */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    /* Nothing here is meant to scroll sideways. */
+    overflow-x: clip;
+    /* We supply our own :active feedback rather than the grey iOS flash. */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* The spotlight follows a mouse, which a touch device does not have. Give
+   those devices a fixed, legible intensity instead of the unlit default. */
+@media (hover: none) {
+    .spotlight-item {
+        --spotlight-intensity: 0.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
