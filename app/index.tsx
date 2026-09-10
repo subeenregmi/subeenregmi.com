@@ -1,6 +1,5 @@
 import StickmanUrl from "@/assets/stickman.png";
 import Links from "@/components/links";
-import Icon from "./components/icon";
 
 export default function Home() {
 	return (
@@ -29,7 +28,7 @@ export default function Home() {
 									external: true,
 								},
 								{
-									content: <Icon variant="github" />,
+									content: "github",
 									url: "https://github.com/subeenregmi",
 									external: true,
 								},

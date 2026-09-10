@@ -11,13 +11,14 @@ import {
 import { DiGoogleCloudPlatform } from "react-icons/di";
 import { FaDocker, FaGitAlt, FaYoutube } from "react-icons/fa";
 import {
+	FaGithub,
 	FaGolang,
 	FaLinkedinIn,
 	FaReact,
 	FaRust,
 	FaXTwitter,
 } from "react-icons/fa6";
-import { FiGithub, FiMapPin } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import { GrMysql } from "react-icons/gr";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import {
@@ -40,7 +41,7 @@ import StickmanUrl from "@/assets/stickman.png";
 import { cn } from "@/utils";
 
 const IconVariantMap = {
-	github: FiGithub,
+	github: FaGithub,
 	locationPin: FiMapPin,
 	educationHat: IoSchoolOutline,
 	code: IoCodeSlash,
