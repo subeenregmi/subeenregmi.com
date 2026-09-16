@@ -24,8 +24,7 @@ export default function Home() {
 								{ content: "whoami", url: "/whoami" },
 								{
 									content: "blogs",
-									url: "https://subeenregmi.github.io",
-									external: true,
+									url: "/blogs",
 								},
 								{
 									content: "github",
