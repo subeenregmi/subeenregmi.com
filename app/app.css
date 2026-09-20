@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
+@font-face {
+	font-family: "Cursive";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("./assets/cursive.woff2") format("woff2");
+}
+
 @theme {
-    --color-sblack: hsl(0, 0%, 10%);
-    --color-swhite-100: hsl(0, 0%, 95%);
-    --color-swhite-75: hsl(0, 0%, 80%);
-    --color-swhite-50: hsl(0, 0%, 45%);
-    --color-swhite-25: hsl(0, 0%, 35%);
-    --font-blocks: "Inter", serif;
+	--color-sblack: hsl(0, 0%, 10%);
+	--color-swhite-100: hsl(0, 0%, 95%);
+	--color-swhite-75: hsl(0, 0%, 80%);
+	--color-swhite-50: hsl(0, 0%, 45%);
+	--color-swhite-25: hsl(0, 0%, 35%);
+	--color-swhite-15: hsl(0, 0%, 17.5%);
+	--font-blocks: "Inter", serif;
+	--font-sister: "Love Ya Like A Sister", cursive;
+	--font-cursive: "Cursive", cursive;
+	--font-cursive--font-feature-settings: "ss01";
 }
 
 /* Devices without a real hover state (phones/tablets) never receive the
@@ -16,52 +28,207 @@
 /* Safe area helpers for notched/rounded displays (iPhone X and newer).
    Paired with viewport-fit=cover in root.tsx. */
 @utility pt-safe {
-    padding-top: env(safe-area-inset-top);
+	padding-top: env(safe-area-inset-top);
 }
 
 @utility pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
 }
 
 :root {
-    font-family: "Neuton", serif;
-    font-weight: 200;
-    font-style: normal;
-    background-color: var(--color-sblack);
-    color: var(--color-swhite-100);
-    color-scheme: dark;
-    /* Stop iOS inflating text when a phone is rotated to landscape. */
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	font-family: "Neuton", serif;
+	font-weight: 200;
+	font-style: normal;
+	background-color: var(--color-sblack);
+	color: var(--color-swhite-100);
+	color-scheme: dark;
+	/* Stop iOS inflating text when a phone is rotated to landscape. */
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    /* Keep content clear of the notch when the phone is held in landscape. */
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-    /* Nothing here is meant to scroll sideways. */
-    overflow-x: clip;
-    /* We supply our own :active feedback rather than the grey iOS flash. */
-    -webkit-tap-highlight-color: transparent;
+	/* Keep content clear of the notch when the phone is held in landscape. */
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+	/* Nothing here is meant to scroll sideways. */
+	overflow-x: clip;
+	/* We supply our own :active feedback rather than the grey iOS flash. */
+	-webkit-tap-highlight-color: transparent;
 }
 
 /* The spotlight follows a mouse, which a touch device does not have. Give
    those devices a fixed, legible intensity instead of the unlit default. */
 @media (hover: none) {
-    .spotlight-item {
-        --spotlight-intensity: 0.5;
-    }
+	.spotlight-item {
+		--spotlight-intensity: 0.5;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+:not(pre) > code {
+	font-family: ui-monospace, monospace;
+	font-size: 1rem;
+	padding: 0 0.3em;
+	background-color: var(--color-swhite-15);
+}
+
+sup > a {
+	text-decoration: none;
+}
+
+kbd {
+	background-color: var(--color-swhite-15);
+	border-radius: 3px;
+	border: 1px solid;
+	color: var(--color-swhite-100);
+	display: inline-block;
+	font-size: 0.9rem;
+	font-weight: bold;
+	line-height: 1;
+	padding: 2px 4px;
+	white-space: nowrap;
+}
+
+li > p {
+	margin-left: 0;
+}
+pre > code {
+	font-size: 1rem;
+}
+
+li:has(> input) {
+	list-style-image: none;
+	margin-left: 8px;
+}
+
+blockquote blockquote {
+	background-color: hsl(0, 0%, 22.5%);
+}
+
+blockquote blockquote blockquote {
+	background-color: hsl(0, 0%, 28%);
+}
+
+/* Tailwind preflight makes every svg a block, which drops inline math onto
+   its own line and stops centred display math from centring. */
+mjx-container[jax="SVG"] > svg {
+	display: inline;
+}
+
+/* MathJax injects its own rules from inside the body, so these selectors
+   carry an extra class to win the cascade. */
+mjx-container.MathJax[jax="SVG"][display="true"] {
+	margin: 1.25rem 0;
+	padding: 0.5rem 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+mjx-container.MathJax[jax="SVG"]:not([display="true"]) {
+	overflow: visible;
+}
+
+@media (prefers-color-scheme: dark) {
+	.markdown-alert {
+		--color-border-default: #30363d;
+		--color-accent-fg: #58a6ff;
+		--color-accent-emphasis: #1f6feb;
+		--color-danger-fg: #f85149;
+		--color-danger-emphasis: #da3633;
+		--color-attention-fg: #d29922;
+		--color-attention-emphasis: #9e6a03;
+		--color-done-fg: #a371f7;
+		--color-done-emphasis: #8957e5;
+		--color-success-fg: #3fb950;
+		--color-success-emphasis: #238636;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	.markdown-alert {
+		--color-border-default: #d0d7de;
+		--color-accent-fg: #0969da;
+		--color-accent-emphasis: #0969da;
+		--color-danger-fg: #d1242f;
+		--color-danger-emphasis: #cf222e;
+		--color-attention-fg: #9a6700;
+		--color-attention-emphasis: #9a6700;
+		--color-done-fg: #8250df;
+		--color-done-emphasis: #8250df;
+		--color-success-fg: #1a7f37;
+		--color-success-emphasis: #1f883d;
+	}
+}
+
+/* Light theme. */
+:root {
+	--color-canvas-default: #ffffff;
+	--color-canvas-subtle: #f6f8fa;
+	--color-border-default: #d0d7de;
+	--color-border-muted: hsla(210, 18%, 87%, 1);
+}
+
+/* Dark theme. */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-canvas-default: #0d1117;
+		--color-canvas-subtle: #161b22;
+		--color-border-default: #30363d;
+		--color-border-muted: #21262d;
+	}
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	display: block;
+	margin-top: 0;
+	margin-bottom: 16px;
+	width: max-content;
+	max-width: 100%;
+	overflow: auto;
+}
+
+tr {
+	background-color: var(--color-canvas-default);
+	border-top: 1px solid var(--color-border-muted);
+}
+
+tr:nth-child(2n) {
+	background-color: var(--color-canvas-subtle);
+}
+
+td,
+th {
+	padding: 6px 13px;
+	border: 1px solid var(--color-border-default);
+}
+
+th {
+	font-weight: 600;
+}
+
+table img {
+	background-color: transparent;
+}
+
+details > summary {
+	list-style-image: url("./assets/dropdown.svg");
+}
+
+details[open] > summary {
+	list-style-image: url("./assets/dropdown-open.svg");
 }

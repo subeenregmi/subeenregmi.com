@@ -7,6 +7,8 @@ import {
 	ScrollRestoration,
 } from "react-router";
 
+import "highlight.js/styles/github-dark.css";
+
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -19,6 +21,10 @@ export const links: Route.LinksFunction = () => [
 	},
 	{
 		href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap",
+		rel: "stylesheet",
+	},
+	{
+		href: "https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap",
 		rel: "stylesheet",
 	},
 ];
@@ -48,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body className="antialiased">
+			<body className="antialiased text-xl">
 				{children}
 				<ScrollRestoration />
 				<Scripts />
