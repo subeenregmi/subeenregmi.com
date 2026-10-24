@@ -6,15 +6,15 @@ export default function Home() {
 		<div className="min-h-dvh w-full flex items-center justify-center pt-safe pb-safe px-4">
 			<div className="flex items-center gap-2 md:gap-4">
 				<img
-					className="h-24 sm:h-[100px] md:h-[125px] shrink-0 invert"
+					className="h-24 sm:h-25 md:h-31.25 shrink-0 invert"
 					src={StickmanUrl}
 					alt="stickman figure"
 				/>
 				<div className="text-center">
-					<h1 className="text-[clamp(1.5rem,8.5vw,1.875rem)] md:text-5xl font-bold">
-						SUBEEN REGMI
+					<h1 className="text-6xl font-cursive text-sred relative z-99 top-1 -rotate-0">
+						subeen regmi
 					</h1>
-					<p className="inline-block text-xl sm:text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-75">
+					<p className="inline-block text-xl sm:text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-80">
 						software engineer
 					</p>
 					<div className="flex items-center justify-evenly">
@@ -24,8 +24,7 @@ export default function Home() {
 								{ content: "whoami", url: "/whoami" },
 								{
 									content: "blogs",
-									url: "https://subeenregmi.github.io",
-									external: true,
+									url: "/blogs",
 								},
 								{
 									content: "github",

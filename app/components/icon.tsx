@@ -8,6 +8,7 @@ import {
 	BiLogoTypescript,
 	BiLogoVuejs,
 } from "react-icons/bi";
+import { BsDot } from "react-icons/bs";
 import { DiGoogleCloudPlatform } from "react-icons/di";
 import { FaDocker, FaGitAlt, FaYoutube } from "react-icons/fa";
 import {
@@ -19,6 +20,7 @@ import {
 	FaXTwitter,
 } from "react-icons/fa6";
 import { FiMapPin } from "react-icons/fi";
+import { GoArrowRight } from "react-icons/go";
 import { GrMysql } from "react-icons/gr";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import {
@@ -27,7 +29,7 @@ import {
 	IoLogoPython,
 	IoSchoolOutline,
 } from "react-icons/io5";
-import { LuBinary } from "react-icons/lu";
+import { LuBinary, LuDot } from "react-icons/lu";
 import {
 	SiGnubash,
 	SiHaskell,
@@ -74,6 +76,8 @@ const IconVariantMap = {
 	mongo: BiLogoMongodb,
 	nix: SiNixos,
 	rust: FaRust,
+	arrowRight: GoArrowRight,
+	dot: BsDot,
 	stickman: true,
 };
 
@@ -87,7 +91,11 @@ export interface IconProps {
 export default function Icon({ variant, className }: IconProps) {
 	if (variant === "stickman") {
 		return (
-			<img src={StickmanUrl} className={cn("invert", "h-15", className)} />
+			<img
+				alt="icon"
+				src={StickmanUrl}
+				className={cn("invert", "h-15", className)}
+			/>
 		);
 	}
 

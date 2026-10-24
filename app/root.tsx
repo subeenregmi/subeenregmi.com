@@ -21,6 +21,14 @@ export const links: Route.LinksFunction = () => [
 		href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap",
 		rel: "stylesheet",
 	},
+	{
+		href: "https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap",
+		rel: "stylesheet",
+	},
+	{
+		href: "https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap",
+		rel: "stylesheet",
+	},
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -48,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body className="antialiased">
+			<body className="antialiased text-xl">
 				{children}
 				<ScrollRestoration />
 				<Scripts />
@@ -81,7 +89,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 		<main className="pt-safe pb-safe container mx-auto min-h-dvh">
 			<div className="p-4 pt-16">
 				<h1 className="text-4xl md:text-5xl font-bold">{message}</h1>
-				<p className="mt-2 text-xl md:text-2xl text-swhite-75">{details}</p>
+				<p className="mt-2 text-xl md:text-2xl text-swhite-80">{details}</p>
 				{stack && (
 					<pre className="w-full mt-4 p-4 overflow-x-auto text-sm">
 						<code>{stack}</code>

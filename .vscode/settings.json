@@ -1,0 +1,7 @@
+{
+	"files.exclude": {
+		".react-router/": true,
+		"**/node_modules": true,
+		"build/": true
+	}
+}
