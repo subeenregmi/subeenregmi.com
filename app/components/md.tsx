@@ -25,14 +25,14 @@ export const markdownComponents: MDXComponents = {
 	kbd: (props) => <kbd {...props} />,
 	ol: (props) => (
 		<ol
-			className="list-decimal ml-6 marker:font-bold marker:text-swhite-50 marker:font-sister marker:text-[0.95em]"
+			className="list-decimal ml-6 marker:font-bold marker:text-swhite-45 marker:font-sister marker:text-[0.95em]"
 			{...props}
 		/>
 	),
 	input: (props) => <input className="mr-2" {...props} />,
 	blockquote: (props) => (
 		<blockquote
-			className="border-l-2 italic bg-swhite-15 px-4 py-2 my-2"
+			className="border-l-2 italic bg-swhite-18 px-4 py-2 my-2"
 			{...props}
 		/>
 	),

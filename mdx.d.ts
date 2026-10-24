@@ -1,5 +1,5 @@
 declare module "*.mdx" {
-	export type BlogUri = "transformer";
+	export type BlogUri = "building-llm";
 
 	export type BlogMetadata = {
 		title: string;

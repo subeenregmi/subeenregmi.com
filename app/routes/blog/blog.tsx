@@ -1,9 +1,9 @@
 import type { BlogMetadata, BlogUri } from "*.mdx";
 import type { MDXContent } from "mdx/types";
 import { data } from "react-router";
-import Transformer, {
-	metadata as TransformerMetadata,
-} from "@/blog/transformer.mdx";
+import BuildingLLM, {
+	metadata as BuildingLLMMetadata,
+} from "@/blog/building-llm.mdx";
 import Header from "@/components/header.tsx";
 import Icon from "@/components/icon.tsx";
 import { markdownComponents } from "@/components/md.tsx";
@@ -16,9 +16,9 @@ const BlogsUriMap: Record<
 	BlogUri,
 	{ content: MDXContent; metadata: BlogMetadata }
 > = {
-	transformer: {
-		content: Transformer,
-		metadata: TransformerMetadata,
+	"building-llm": {
+		content: BuildingLLM,
+		metadata: BuildingLLMMetadata,
 	},
 };
 
@@ -41,7 +41,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
 			<Header />
 			<TextBlock>
 				<Title title={blog.metadata.title} />
-				<div className="text-xl italic text-swhite-50 flex gap-2">
+				<div className="text-xl italic text-swhite-45 flex gap-2">
 					<p>{blog.metadata.estimated}</p>
 					<Icon variant="dot" className="self-center mt-1" />
 					<p>{formatDate(blog.metadata.date)}</p>

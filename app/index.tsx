@@ -11,10 +11,10 @@ export default function Home() {
 					alt="stickman figure"
 				/>
 				<div className="text-center">
-					<h1 className="text-6xl font-cursive text-[#DF3844] relative z-99 top-1">
+					<h1 className="text-6xl font-cursive text-sred relative z-99 top-1 -rotate-0">
 						subeen regmi
 					</h1>
-					<p className="inline-block text-xl sm:text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-75">
+					<p className="inline-block text-xl sm:text-2xl md:text-3xl -mt-2 mr-auto mb-[4.5px] ml-auto text-swhite-80">
 						software engineer
 					</p>
 					<div className="flex items-center justify-evenly">

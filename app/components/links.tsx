@@ -33,16 +33,16 @@ export function StyledLink({
 		<Link
 			key={key}
 			className={cn(
-				"text-swhite-25",
+				"text-swhite-35",
 				"underline",
 				"underline-offset-[2.5px]",
 				"transition",
 				"duration-150",
 				"ease-linear",
-				"hover:text-swhite-75",
+				"hover:text-swhite-80",
 				// Touch devices never hover, so the dim resting colour would be
 				// all they ever see. Give them the lit colour and a tap state.
-				"touch:text-swhite-75",
+				"touch:text-swhite-80",
 				"active:opacity-60",
 				"touch-manipulation",
 				"cursor-pointer",

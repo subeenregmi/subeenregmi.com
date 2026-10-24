@@ -10,15 +10,35 @@
 
 @theme {
 	--color-sblack: hsl(0, 0%, 10%);
-	--color-swhite-100: hsl(0, 0%, 95%);
-	--color-swhite-75: hsl(0, 0%, 80%);
-	--color-swhite-50: hsl(0, 0%, 45%);
-	--color-swhite-25: hsl(0, 0%, 35%);
-	--color-swhite-15: hsl(0, 0%, 17.5%);
+	--color-swhite-95: hsl(0, 0%, 95%);
+	--color-swhite-80: hsl(0, 0%, 80%);
+	--color-swhite-45: hsl(0, 0%, 45%);
+	--color-swhite-35: hsl(0, 0%, 35%);
+	--color-swhite-28: hsl(0, 0%, 28%);
+	--color-swhite-22: hsl(0, 0%, 22%);
+	--color-swhite-18: hsl(0, 0%, 18%);
+	--color-sred: #df3844;
+	--color-sgreen: #38df7f;
 	--font-blocks: "Inter", serif;
 	--font-sister: "Love Ya Like A Sister", cursive;
 	--font-cursive: "Cursive", cursive;
 	--font-cursive--font-feature-settings: "ss01";
+	--font-code: "Google Sans Code", monospace;
+}
+
+@theme inline {
+	--color-sred-light: hsl(from var(--color-sred) h s 72%);
+	--color-sgreen-light: hsl(from var(--color-sgreen) h s 72%);
+	--color-spotlight-35: color-mix(
+		in hsl,
+		var(--color-swhite-95) calc(var(--spotlight-intensity, 0) * 100%),
+		var(--color-swhite-35)
+	);
+	--color-spotlight-45: color-mix(
+		in hsl,
+		var(--color-swhite-95) calc(var(--spotlight-intensity, 0) * 100%),
+		var(--color-swhite-45)
+	);
 }
 
 /* Devices without a real hover state (phones/tablets) never receive the
@@ -37,10 +57,10 @@
 
 :root {
 	font-family: "Neuton", serif;
-	font-weight: 200;
+	font-weight: 300;
 	font-style: normal;
 	background-color: var(--color-sblack);
-	color: var(--color-swhite-100);
+	color: var(--color-swhite-95);
 	color-scheme: dark;
 	/* Stop iOS inflating text when a phone is rotated to landscape. */
 	-webkit-text-size-adjust: 100%;
@@ -79,10 +99,9 @@ body {
 }
 
 :not(pre) > code {
-	font-family: ui-monospace, monospace;
 	font-size: 1rem;
-	padding: 0 0.3em;
-	background-color: var(--color-swhite-15);
+	padding: 0 0.2em;
+	background-color: var(--color-swhite-18);
 }
 
 sup > a {
@@ -90,10 +109,10 @@ sup > a {
 }
 
 kbd {
-	background-color: var(--color-swhite-15);
+	background-color: var(--color-swhite-18);
 	border-radius: 3px;
 	border: 1px solid;
-	color: var(--color-swhite-100);
+	color: var(--color-swhite-95);
 	display: inline-block;
 	font-size: 0.9rem;
 	font-weight: bold;
@@ -105,6 +124,13 @@ kbd {
 li > p {
 	margin-left: 0;
 }
+
+code {
+	font-family: "Google Sans Code", monospace;
+	font-weight: 300;
+	font-style: normal;
+	font-variation-settings: "MONO" 1;
+}
 pre > code {
 	font-size: 1rem;
 }
@@ -115,11 +141,11 @@ li:has(> input) {
 }
 
 blockquote blockquote {
-	background-color: hsl(0, 0%, 22.5%);
+	background-color: var(--color-swhite-22);
 }
 
 blockquote blockquote blockquote {
-	background-color: hsl(0, 0%, 28%);
+	background-color: var(--color-swhite-28);
 }
 
 /* Tailwind preflight makes every svg a block, which drops inline math onto
@@ -173,51 +199,41 @@ mjx-container.MathJax[jax="SVG"]:not([display="true"]) {
 	}
 }
 
-/* Light theme. */
-:root {
-	--color-canvas-default: #ffffff;
-	--color-canvas-subtle: #f6f8fa;
-	--color-border-default: #d0d7de;
-	--color-border-muted: hsla(210, 18%, 87%, 1);
-}
-
-/* Dark theme. */
-@media (prefers-color-scheme: dark) {
-	:root {
-		--color-canvas-default: #0d1117;
-		--color-canvas-subtle: #161b22;
-		--color-border-default: #30363d;
-		--color-border-muted: #21262d;
-	}
-}
-
 table {
 	border-spacing: 0;
-	border-collapse: collapse;
+	border-collapse: separate;
 	display: block;
 	margin-top: 0;
 	margin-bottom: 16px;
 	width: max-content;
 	max-width: 100%;
 	overflow: auto;
-}
-
-tr {
-	background-color: var(--color-canvas-default);
-	border-top: 1px solid var(--color-border-muted);
+	background-color: var(--color-sblack);
+	border: 1px solid var(--color-swhite-95);
 }
 
 tr:nth-child(2n) {
-	background-color: var(--color-canvas-subtle);
+	background-color: var(--color-swhite-18);
 }
 
 td,
 th {
-	padding: 6px 13px;
-	border: 1px solid var(--color-border-default);
+	padding: 0.5em 0.8em;
+	border-right: 1px solid var(--color-swhite-28);
+	border-bottom: 1px solid var(--color-swhite-28);
+}
+
+td:last-child,
+th:last-child {
+	border-right: 0;
+}
+
+tr:last-child > td {
+	border-bottom: 0;
 }
 
 th {
+	background-color: var(--color-swhite-22);
 	font-weight: 600;
 }
 
@@ -231,4 +247,94 @@ details > summary {
 
 details[open] > summary {
 	list-style-image: url("./assets/dropdown-open.svg");
+}
+
+pre code.hljs {
+	display: block;
+	overflow-x: auto;
+	padding: 1em;
+}
+code.hljs {
+	padding: 3px 5px;
+}
+/*!
+  Theme: Grayscale Dark
+  Author: Alexandre Gavioli (https://github.com/Alexx2/)
+  License: MIT, via base16-schemes-source
+  Adapted to the swhite scale, with sred on keywords and meta.
+*/
+.hljs {
+	color: var(--color-swhite-95);
+	background: var(--color-sblack);
+	border: 1px solid var(--color-swhite-45);
+	border-radius: 10px;
+}
+
+.hljs::selection,
+.hljs ::selection {
+	background-color: var(--color-swhite-22);
+	color: var(--color-swhite-80);
+}
+
+.hljs-comment {
+	color: var(--color-swhite-35);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-number,
+.hljs-literal,
+.hljs-symbol {
+	color: var(--color-sgreen);
+}
+
+.hljs-operator {
+	opacity: 0.7;
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.function_,
+.hljs-class .hljs-title,
+.hljs-section,
+.hljs-attribute {
+	color: var(--color-swhite-95);
+}
+
+.hljs-strong {
+	color: var(--color-swhite-95);
+	font-weight: bold;
+}
+
+.hljs-emphasis {
+	color: var(--color-swhite-95);
+	font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-type,
+.hljs-template-tag,
+.hljs-meta,
+.diff .hljs-meta {
+	color: var(--color-sred);
+	font-weight: 700;
+}
+
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+	color: var(--color-sred);
+	font-weight: 700;
+}
+
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+	font-weight: bold;
+}
+
+.hljs-addition {
+	background-color: hsl(from var(--color-sgreen-light) h s l / 0.2);
+}
+
+.hljs-deletion {
+	background-color: hsl(from var(--color-sred-light) h s l / 0.2);
 }
